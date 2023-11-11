@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SimilarToInstagram</title>
+    <title>Instagram</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,6 +13,8 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
+      <%= render 'shared/flash'%>
+      <%= render 'shared/header'%>
       <%= yield %>
     </main>
   </body>

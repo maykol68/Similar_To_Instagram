@@ -22,7 +22,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
@@ -42,10 +41,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
-
   private
-
-  def auth
+  
+  def auth 
     @auth ||= request.env['omniauth.auth']
   end
 end

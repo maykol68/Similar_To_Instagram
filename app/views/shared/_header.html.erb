@@ -1,9 +1,16 @@
-<% if current_user %>
-<%= image_tag current_user.avatar_url, width: 35, height: 35%>
-<%= link_to "Edit Account",edit_user_registration_path %>
-<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete%>
-<% else %>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Create Account", new_user_registration_path %>
-
-<% end %>
+<div class="flex justify-between items-center px-2">
+        <%= link_to  posts_path do %>
+            <h1 class="text-2xl hover:text-red-500 font-bold text-teal-400 "><%= t('app_name')%></h1>
+        <% end %>
+    <% if current_user %>
+        <%= image_tag current_user.avatar_url, class: "w-10 h-10 rounded-full mx-auto" %>
+        <%= link_to "Edit Account", edit_user_registration_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Logout", destroy_user_session_path, data:{
+            turbo_method: :delete,
+            turbo_confirm: t('common.confirm')}, class:"rounded-full py-3 px-5 bg-blue-600 text-white block font-medium" if current_user %>
+        <hr class="mt-6">
+    <% else %>  
+        <%= link_to " Login", new_user_session_path, class: "rounded-full py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <%= link_to "Create Account", new_user_registration_path%>
+    <% end %>
+</div>

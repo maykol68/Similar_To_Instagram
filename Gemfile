@@ -70,6 +70,8 @@ end
 
 gem "tailwindcss-rails", "~> 2.0"
 
+gem 'foreman', github: 'ddollar/foreman'
+
 
 gem 'devise'
 gem 'omniauth'

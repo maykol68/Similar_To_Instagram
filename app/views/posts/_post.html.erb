@@ -1,14 +1,14 @@
 <div id="<%= dom_id post %>">
 
-  <p class=" self-center		">
+  <p class=" self-center">
     <%=image_tag post.photo, width: 300 if post.photo.attached? %>
   </p>
 
-  <p class="my-5 font-serif text-center	">
+  <p class="my-5 font-serif text-center	text-white">
     <%= post.title %>
   </p>
 
-  <p class="my-5 font-serif text-center	" >
+  <p class="my-5 font-serif text-center	text-white" >
     <%= post.description %>
   </p>
 

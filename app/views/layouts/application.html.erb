@@ -13,13 +13,19 @@
     
   </head>
 
-  <body class="bg-gray-950">
+  <body class="bg-gray-900">
       <%= render 'shared/flash'%>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
-      <%= render 'shared/header'%>
-    <div class="lg:container lg:mx-auto">
-      <%= yield %>
-    </div>
-
+      <div class="grid grid-cols-3 grid-rows-1 ">
+        <div class="w-full h-screen ">
+          <%= render 'shared/sidebar'%>
+        </div>
+        <div class="w-full p-4">
+          <%= yield %>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+        </div>
+        <div class="w-full text-white">
+         <h1>Sugerencias</h1>
+        </div>
+      </div >
   </body>
 </html>

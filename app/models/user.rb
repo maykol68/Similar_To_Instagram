@@ -17,6 +17,7 @@ class User < ApplicationRecord
       # user.skip_confirmation!
 
       has_many :posts, dependent: :destroy
+      has_many :favorites, dependent: :destroy
     end
   end
 end

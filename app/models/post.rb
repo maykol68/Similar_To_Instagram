@@ -8,4 +8,7 @@ class Post < ApplicationRecord
     validates :photo, presence: true
 
     belongs_to :user, default -> { current_user }
+
+    has_many :favorites, dependent: :destroy
+    
 end

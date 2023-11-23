@@ -16,7 +16,7 @@ class User < ApplicationRecord
       # uncomment th line below to skip the confirmation emails.
       # user.skip_confirmation!
 
-      has_many :posts dependent: :destroy
+      has_many :posts, dependent: :destroy
     end
   end
 end

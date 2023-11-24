@@ -1,14 +1,19 @@
 class FavoritesController < ApplicationController
 
     def create
-        Favorite.create(post: post, user: current_user)
-        redirect_to post_path(product)
+        product.favorite!
+        redirect_to post_path(post)
     end
 
+    def destroy
+        post.unfavorite!
+        redirect_to post_path(post), status: :see_other
+    end
+    
     private
 
     def post
-       @post ||= Product.find(params[:post_id])
+       @post ||= Post.find(params[:post_id])
     end
 
 end

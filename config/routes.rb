@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :posts, path: '/posts'
-  resources :favorites, only: :create
+  resources :favorites, only: [:create, :destroy], param: :post_id
 
 
   devise_for :users, controllers: {

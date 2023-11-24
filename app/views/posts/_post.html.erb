@@ -13,8 +13,18 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this post", edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to t('.show'), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to t('.edit'), edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
+     <% if @post.favorite%>
+      <%= link_to '♡ ' , post_path(@post.id), data: {
+                            turbo_method: :delete }
+                            class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <% else %>
+        <%= link_to '❤️️' , posts_path(post_id: @post.id), data: {
+                            turbo_method: :post }
+                            class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <% end %>
+
 </div>

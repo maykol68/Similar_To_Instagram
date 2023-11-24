@@ -15,6 +15,9 @@ class User < ApplicationRecord
       # if you are using confirmable and the provider(s) you use validate emails,
       # uncomment th line below to skip the confirmation emails.
       # user.skip_confirmation!
+
+      has_many :posts, dependent: :destroy
+      has_many :favorites, dependent: :destroy
     end
   end
 end

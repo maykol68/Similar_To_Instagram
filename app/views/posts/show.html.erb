@@ -1,5 +1,6 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-autorow">
+  <%= link_to t('view_post_of_user', username: @post.user.username), user_path(@post.user.username)%>
     <%= render @post %>
 
     <%= link_to t('.edit'), edit_post_path(@post), if @post.owner? class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

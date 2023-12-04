@@ -7,7 +7,7 @@ class Post < ApplicationRecord
     validates :description, length:  { maximum: 300 }
     validates :photo, presence: true
 
-    belongs_to :user, default: :current_user 
+    belongs_to :user, default: -> { Current.user } 
 
     def owner? 
         user_id == current_user&.id

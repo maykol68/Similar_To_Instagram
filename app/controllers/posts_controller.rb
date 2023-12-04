@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
 
   def edit
+     
   end
 
   def create
@@ -54,6 +55,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :photo)
+      params.require(:post).permit(:title, :description, :photo, :user_id)
     end
 end

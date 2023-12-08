@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
 
   def edit
-     
+    authorize! set_post
   end
 
   def create
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def update
-   
+      authorize! set_post
       if @post.update(post_params)
           redirect_to post_url(@post), notice: t('updated')
           
@@ -43,7 +43,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy!
+    authorize! set_post
+    @post.destroy
       redirect_to posts_url, notice: t('destroyed'), status: :see_other #"Post was successfully destroyed." 
 
   end
@@ -54,7 +55,9 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    
+
     def post_params
-      params.require(:post).permit(:title, :description, :photo, :user_id)
+      params.require(:post).permit(:title, :description, :photo)
     end
 end

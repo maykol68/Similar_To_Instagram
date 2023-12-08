@@ -1,6 +1,6 @@
 <%= form_with(model: @post, class: "contents") do |form| %>
   <% @post.errors.full_messages.each do |error|%>
-        <%= error %><br>
+        <div class="text-white"><%= error %></div><br>
   <% end %><br>
 
   <div class="my-5">

@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    
+      # cambio
   end
 
   def new

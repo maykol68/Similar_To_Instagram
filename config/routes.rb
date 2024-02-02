@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :posts, path: '/posts'
+  resources :posts
+  root 'posts#index'
   resources :favorites, only: [:create, :destroy], param: :post_id
 
 

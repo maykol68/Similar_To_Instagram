@@ -68,6 +68,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'tailwindcss'
+
 # use foreman gem 
 gem 'foreman', github: 'ddollar/foreman'
 
@@ -76,6 +78,3 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
-
-
-gem "tailwindcss-rails", "~> 2.3"

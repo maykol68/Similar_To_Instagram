@@ -1,13 +1,11 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto md:w-2/3 w-full flex post">
   <div class="mx-autorow">
-  <%= link_to t('view_post_of_user', username: @post.user.username), user_path(@post.user.username)%>
     <%= render @post %>
 
-    <%= link_to t('.edit'), edit_post_path(@post), if @post.owner? class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to t('.edit'), edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <%= link_to t('.delete'), post_path(@post), data: {
                                         turbo_method: :delete,
-                                        turbo_confirm: ('.common.confirm')}
-                                        if @post.owner?
+                                        turbo_confirm: ('.common.confirm')},
                                         class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
    
     <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

@@ -1,30 +1,26 @@
-<div id="<%= dom_id post %>" class="p-4">
+<div id="<%= dom_id post %>" class="post p-4">
 
-  <div class="flex justify-center w-full">
-    <%=image_tag post.photo, width: 300 if post.photo.attached? %>
-  </div>
+    <div class="flex justify-center w-full">
+      <%=image_tag post.photo, width: 300 if post.photo.attached? %>
+    </div>
 
-  <p class="my-5 font-serif 	text-white">
-    <%= post.title %>
-  </p>
+    <p class="my-5 font-serif 	text-white">
+      <%= post.title %>
+    </p>
 
-  <p class="my-5 font-serif 	text-white" >
-    <%= post.description %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to t('.show'), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to t('.edit'), edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-     <% if @post.favorite%>
-      <%= link_to '♡ ' , post_path(@post.id), data: {
-                            turbo_method: :delete }
-                            class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <p class="my-5 font-serif 	text-white" >
+      <%= post.description %>
+    </p>
+    <% if action_name != "index" %>
+      <% if post.like %>
+        <%= button_to "dislike", like_path(post.id), data: {turbo_method: :delete}%>
       <% else %>
-        <%= link_to '❤️️' , posts_path(post_id: @post.id), data: {
-                            turbo_method: :post }
-                            class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= button_to "like", likes_path(post_id: post.id), data: {turbo_method: :post}%>
       <% end %>
-
+    <% end %>
+    <% if action_name != "show" %>
+      <%= link_to t('.show'), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to t('.edit'), edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <hr class="mt-6">
+    <% end %>    
 </div>

@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
 
   def index
     @posts = Post.all
+    
   end
 
   def show
-      # cambio
   end
 
   def new
@@ -19,18 +21,18 @@ class PostsController < ApplicationController
   end
 
   def create
+    ActsAsTenant.with_tenant(current_user) do
     @post = Post.new(post_params)
 
-    
       if @post.save
         redirect_to post_url(@post), notice: t('created') #"Post was successfully created." 
         
       else
         render :new, status: :unprocessable_entity 
-        
       end
+    end
   end
-
+  
   def update
       authorize! set_post
       if @post.update(post_params)
@@ -45,7 +47,7 @@ class PostsController < ApplicationController
   def destroy
     authorize! set_post
     @post.destroy
-      redirect_to posts_url, notice: t('destroyed'), status: :see_other #"Post was successfully destroyed." 
+      redirect_to posts_url, notice: t('destroyed'  ), status: :see_other #"Post was successfully destroyed." 
 
   end
 
@@ -53,6 +55,10 @@ class PostsController < ApplicationController
 
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def post_params_index
+      params.permit(:likes)
     end
 
     

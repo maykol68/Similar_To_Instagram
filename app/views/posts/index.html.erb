@@ -1,3 +1,6 @@
-<div class="">
-      <%= render @posts %>
-</div>
+<%= turbo_frame_tag :posts do %>
+
+        <%= render @posts %>
+
+
+<%end %>

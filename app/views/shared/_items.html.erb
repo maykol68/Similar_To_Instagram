@@ -1,8 +1,28 @@
-<%= image_tag current_user.avatar_url, class: "w-10 h-10 rounded-full mx-auto" if current_user %>
-<%= link_to "Edit Account", edit_user_registration_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" if current_user%>
-<%= link_to "New post", new_post_path, class:"rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" if current_user %>
-<%= link_to "Logout", destroy_user_session_path	, data:{
-                    turbo_method: :delete,
-                    turbo_confirm: t('common.confirm')}, class:"rounded-full py-3 px-5 bg-blue-600 text-white block font-medium" if current_user %>
-<%= link_to " Login", new_user_session_path, class: "rounded-full py-3 px-5 bg-blue-600 text-white block font-medium" unless current_user %>
-<%= link_to "Create Account",  new_user_registration_path, class: "rounded-full py-3 px-5 bg-blue-600 text-white block font-medium" unless current_user%>
+<div class="w-full text-white ">
+    <div class=" flex justify-between text-left items-center text-white text-2xl" >
+        <% if current_user %>
+            <%= image_tag current_user.avatar_url ? current_user.avatar_url : 'notfoundimg.jpg', class: "w-10 h-10 rounded-full " %>
+            <%= link_to new_post_path do %>
+                <i class="fa-solid fa-plus cursor-pointer "></i>
+            <% end %>
+            <%= link_to edit_user_registration_path do%>
+                <i class="fa-solid fa-gear cursor-pointer my-4"></i>
+            <%end%>
+            <%= link_to destroy_user_session_path, data:{
+            turbo_method: :delete, turbo_confirm: t('common.confirm')} do %>
+                <i class="fa-solid fa-right-from-bracket cursor-pointer "></i>
+            <% end %>
+            <%= link_to t('.likes'), likes_path %>
+            
+        <%end%>
+    </div>
+    <div class="w-full flex justify-between text-white underline" >
+        <% unless current_user %>
+            <%= link_to   new_user_session_path do %>
+                Login <i class="fa-solid fa-right-to-bracket cursor-pointer text-2xl  "></i>
+            <%end%>
+            <%= link_to "Sign Up",  new_user_registration_path, class: "text-lg ml-10 "%>
+        <% end %>
+    </div>
+</div>
+

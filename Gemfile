@@ -78,6 +78,11 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
-
+# use post request post
 gem 'acts_as_tenant'
+
+# tailwindcss 
 gem "tailwindcss-rails", "~> 2.3"
+
+# Use for pagination and others things
+gem "pagy", "~> 7.0"

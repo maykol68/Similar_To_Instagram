@@ -1,6 +1,8 @@
-<%= turbo_frame_tag :posts do %>
-
-        <%= render @posts %>
-
-
-<%end %>
+ <%= turbo_frame_tag 'home' do%>
+        <%= turbo_frame_tag :posts do %>
+                <%= turbo_frame_tag "posts-#{@pagy.page}", class: 'posts' do %>
+                        <%= render @posts %>
+                        <%= turbo_frame_tag "posts-#{@pagy.next}", class:'posts', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
+                <% end %>
+        <% end %>
+<% end %>

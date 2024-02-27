@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   
     belongs_to :user
     acts_as_tenant :user  # Esto establece la asociación con el usuario como el inquilino
-  
+
     before_validation :set_default_user
   
     def owner?

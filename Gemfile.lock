@@ -191,6 +191,7 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
+    pagy (7.0.6)
     pg (1.5.4)
     psych (5.1.2)
       stringio
@@ -316,6 +317,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection (~> 1.0)
+  pagy (~> 7.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.1)

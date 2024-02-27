@@ -1,24 +1,24 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, only: [:index, :create, :destroy]
+  before_action :post, only: [:index, :create, :destroy]
 
   def index
 
   end
   
   def create
-    @post.like!
-    redirect_to post_path(@post)
+    post.like!(current_user)
+    redirect_to post_path(post)
   end
 
   def destroy
-    @post.dislike!
-    redirect_to post_path(@post)
+    post.dislike!(current_user)
+    redirect_to post_path(post)
   end
 
   private
 
-  def find_post
+  def post
     @post ||= Post.find(params[:post_id])
   end
 end

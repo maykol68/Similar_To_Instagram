@@ -12,13 +12,13 @@ class Post < ApplicationRecord
 
     before_validation :set_default_user
   
-    def owner?
-      self.user == Current.user
+    def owner?(current_user)
+      self.user == current_user
     end
   
     private
   
-    def set_default_user
-      self.user ||= Current.user
+    def set_default_user(current_user)
+      self.user ||= current_user
     end
   end

@@ -16,9 +16,9 @@ class FindPosts
         Post.with_attached_photo
     end
 
-    def filter_by_likes(scoped, likes)
+    def filter_by_likes(scoped, likes, current_user)
         return scoped  unless likes.present?
 
-        scoped.joins(:likes).where ({ likes: { user_id: Current.user.id }})
+        scoped.joins(:likes).where ({ likes: { user_id: current_user.id }})
     end
 end

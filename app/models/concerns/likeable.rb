@@ -3,17 +3,17 @@ module Likeable
   
     included do
       has_many :likes, dependent: :destroy
-  
-      def like!
-        likes.create(user: Current.user)
+         
+      def like!(current_user)
+         likes.create(user: current_user)
+      end
+
+      def dislike!(current_user)
+        like(current_user)&.destroy
       end
   
-      def dislike!            
-        like&.destroy
-      end
-  
-      def like
-        likes.find_by(user: Current.user)
+      def like(current_user)
+        likes.find_by(user: current_user)
       end
     end
   end

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    
+    @pagy, @posts = pagy_countless(@posts, items: 12)
   end
 
   def show

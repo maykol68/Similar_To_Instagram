@@ -12,10 +12,10 @@
       <%= post.description %>
     </p>
     <% if action_name != "index" %>
-      <% if post.like %>
-        <%= button_to "dislike", like_path(post.id), data: {turbo_method: :delete}%>
+      <% if post.like(current_user) %>
+        <%= button_to "dislike", like_path(post_id: post.id), method: :delete, data: {turbo_method: :delete}, class:"text-white"%>
       <% else %>
-        <%= button_to "like", likes_path(post_id: post.id), data: {turbo_method: :post}%>
+        <%= button_to "like", likes_path(post_id: post.id), data: {turbo_method: :post} , class:"text-white"%>
       <% end %>
     <% end %>
     <% if action_name != "show" %>

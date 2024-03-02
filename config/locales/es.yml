@@ -1,0 +1,5 @@
+es:
+  hello: "Hola  mundo"
+  app_name: "Instagram"
+  posts:
+    confirm_delete: "¿Estás seguro de que deseas eliminar este post?"

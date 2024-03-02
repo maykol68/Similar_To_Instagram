@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-  aurond_action :switch_locale
+  around_action :switch_locale
   before_action :authenticate_user!
 
     include Error
 
-
-    def switch_locales(&action)
+    def switch_locale(&action)
       I18n.with_locale(locale_from_header, &action)
     end
     private

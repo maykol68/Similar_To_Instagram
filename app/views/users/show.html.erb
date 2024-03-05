@@ -1,4 +1,18 @@
 <%= @user.username%>
+<% unless current_user.followed_users.include?(@user) %>
+  <%= link_to "Seguir", follow_user_path(@user), method: :post %>
+<% else %>
+  <%= link_to "Dejar de seguir", unfollow_user_path(@user), method: :delete %>
+<% end %>
+<h2>Seguidores:</h2>
+<% @user.followers_users.each do |follower| %>
+  <p><%= link_to follower.username, user_path(follower) %></p>
+<% end %>
+
+<h2>Siguiendo:</h2>
+<% @user.followed_users.each do |followed| %>
+  <p><%= link_to followed.username, user_path(followed) %></p>
+<% end %>
 
 <%= turbo_frame_tag "posts-#{@pagy.page}", class: 'posts' do %>
         <%= render partial:'posts/post' collection: @posts %>

@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:index, :create, :destroy], param: :post_id
-  resources :users, only: :show, path: '/users', param: :username
+  resources :users, only: :show, path: '/users', param: :username do
+    member do
+      post 'follow'
+      delete 'unfollow'
+    end
+  end
   resources :posts 
   root 'posts#index'
-  delete 'posts/:id', to: 'posts#destroy'
 
   
 end

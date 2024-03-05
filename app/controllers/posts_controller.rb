@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :set_post, only: %i[ show edit update destroy ]
+  
 
 
   def index
-    @posts = Post.all
-    @pagy, @posts = pagy_countless(@posts, items: 12)
+    @posts = Post.all.load_async
+    @pagy, @posts = pagy_countless(FindPosts.new.call(post_params_index).load_async, items: 12)
   end
 
   def show
@@ -21,22 +22,21 @@ class PostsController < ApplicationController
   end
 
   def create
-    ActsAsTenant.with_tenant(current_user) do
-    @post = Post.new(post_params)
+      @post = Post.new(post_params)
 
       if @post.save
-        redirect_to post_url(@post), notice: t('created') #"Post was successfully created." 
+        redirect_to post_url(@post), notice: t('.created') #"Post was successfully created." 
         
       else
         render :new, status: :unprocessable_entity 
       end
-    end
+    
   end
   
   def update
       authorize! set_post
       if @post.update(post_params)
-          redirect_to post_url(@post), notice: t('updated')
+          redirect_to post_url(@post), notice: t('.updated')
           
       else
         render :edit, status: :unprocessable_entity 
@@ -45,10 +45,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    authorize! set_post
-    @post.destroy
-      redirect_to posts_url, notice: t('destroyed'  ), status: :see_other #"Post was successfully destroyed." 
-
+    authorize! set_post 
+      @post.destroy!
+        redirect_to posts_url, notice: t('.destroyed'), status: :see_other #"Post was successfully destroyed." 
   end
 
   private
@@ -58,7 +57,7 @@ class PostsController < ApplicationController
     end
 
     def post_params_index
-      params.permit(:likes)
+      params.permit(:page,:likes, :user_id)
     end
 
     

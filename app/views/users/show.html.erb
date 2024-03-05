@@ -1,1 +1,8 @@
 <%= @user.username%>
+
+<%= turbo_frame_tag "posts-#{@pagy.page}", class: 'posts' do %>
+        <%= render partial:'posts/post' collection: @posts %>
+        <%= turbo_frame_tag "posts-#{@pagy.next}", class:'posts', 
+                                                   src: pagy_url_for(@pagy, @pagy.next), 
+                                                   loading: :lazy if @pagy.next %>
+<% end %>

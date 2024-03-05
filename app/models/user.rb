@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :omniauthable, :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, omniauth_providers: [:google_oauth2]
 
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -19,5 +20,11 @@ class User < ApplicationRecord
   end
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  before_save :downcase_attributes
+
+  def downcase_attributes
+      self.username = username.downcase
+      self.email = email.downcase
+  end
   
 end

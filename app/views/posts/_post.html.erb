@@ -1,8 +1,27 @@
 <div id="<%= dom_id post %>" class="post p-4">
-
-    <div class="flex justify-center w-full">
-      <%=image_tag post.photo, width: 300 if post.photo.attached? %>
+  <div class="flex items-center text-white ">
+    <%= link_to user_path(post.user.username) do%>
+      <%= image_tag post.user.avatar_url ? post.user.avatar_url : 'notfoundimg.jpg', class: "w-10 h-10 rounded-full mr-4" %>
+      <a><%= t('.view_profile', username: post.user.username) %></a>
+    <% end %>
+  </div>
+  <div class="flex items-center justify-between">
+    <% if post.owner?(current_user) %>
+      <%= link_to  edit_post_path(post) do %>
+        <i class="fa-solid fa-pen cursor-pointer my-4 text-white hover:text-blue-500"></i>
+      <% end %>
+      <%= button_to post_path(post),  method: :delete, data: {turbo_method: :delete} do %>
+        <i class="fa-solid text-rigth fa-trash text-white text-2xl hover:text-red-500"></i>
+      <% end %>
+    <% end %>
+  </div>
+    <div class="flex justify-center w-full border-2 border-slate-500 rounded-lg">
+      <%= link_to post do %>
+          <%= image_tag post.photo, width: 700 if post.photo.attached?  %>
+      <% end %>
     </div>
+
+      <%= render "likes" %>
 
     <p class="my-5 font-serif 	text-white">
       <%= post.title %>
@@ -11,16 +30,6 @@
     <p class="my-5 font-serif 	text-white" >
       <%= post.description %>
     </p>
-    <% if action_name != "index" %>
-      <% if post.like(current_user) %>
-        <%= button_to "dislike", like_path(post_id: post.id), method: :delete, data: {turbo_method: :delete}, class:"text-white"%>
-      <% else %>
-        <%= button_to "like", likes_path(post_id: post.id), data: {turbo_method: :post} , class:"text-white"%>
-      <% end %>
-    <% end %>
-    <% if action_name != "show" %>
-      <%= link_to t('.show'), post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to t('.edit'), edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-      <hr class="mt-6">
-    <% end %>    
+    
+      <hr class="mt-6	">
 </div>

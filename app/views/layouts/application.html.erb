@@ -18,10 +18,10 @@
   <body class="bg-gray-900 ">
       <%= render 'shared/flash'%>
       <div class="flex justify-between">
-        <div class="w-full p-4 border-r border-indigo-600 lg:w-2/12	 h-screen  ">
+        <div class="w-full p-4 border-r border-indigo-600 lg:w-2/12	 max-h-full h-screen fixed   ">
           <%= render 'shared/sidebar'%>
         </div>
-        <div class="w-full p-4  lg:w-1/2 ">
+        <div class="w-full p-4  lg:w-1/2 overflow-y-auto ml-80">
           <%= yield %>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
         </div>

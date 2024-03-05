@@ -1,13 +1,8 @@
 <div class="mx-auto md:w-2/3 w-full flex post">
+  <%= link_to  posts_path do %>
+      <i class="fa-solid fa-arrow-left text-white text-2xl"></i>
+  <%end %>
   <div class="mx-autorow">
     <%= render @post %>
-
-    <%= link_to t('.edit'), edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to t('.delete'), post_path(@post), data: {
-                                        turbo_method: :delete,
-                                        turbo_confirm: ('.common.confirm')},
-                                        class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-   
-    <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

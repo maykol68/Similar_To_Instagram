@@ -5,23 +5,20 @@
             <%= link_to new_post_path do %>
                 <i class="fa-solid fa-plus cursor-pointer "></i>
             <% end %>
-            <%= link_to edit_user_registration_path do%>
-                <i class="fa-solid fa-gear cursor-pointer my-4"></i>
-            <%end%>
             <%= link_to destroy_user_session_path, data:{
             turbo_method: :delete, turbo_confirm: t('common.confirm')} do %>
                 <i class="fa-solid fa-right-from-bracket cursor-pointer "></i>
             <% end %>
-            <%= link_to "likes", likes_path %>
+            
             
         <%end%>
     </div>
     <div class="w-full flex justify-between text-white underline" >
         <% unless current_user %>
-            <%= link_to   new_user_session_path do %>
-                Login <i class="fa-solid fa-right-to-bracket cursor-pointer text-2xl  "></i>
+            <%= link_to  new_user_session_path do %>
+                    <i class="fa-solid fa-right-to-bracket cursor-pointer text-2xl  "></i>
             <%end%>
-            <%= link_to "Sign Up",  new_user_registration_path, class: "text-lg ml-10 "%>
+            <%= link_to t('.Sign_Up'),  new_user_registration_path, class: "text-lg ml-10 "%>
         <% end %>
     </div>
 </div>

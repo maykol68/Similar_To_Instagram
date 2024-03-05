@@ -27,6 +27,6 @@ module SimilarToInstagram
     config.i18n.available_locales = [:en, :es]
 
     # lenguaje by default 
-    config.i18n.default_locale = :es
+    config.i18n.default_locale = :en
   end
 end

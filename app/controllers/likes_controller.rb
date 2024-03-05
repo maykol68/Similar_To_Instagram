@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  before_action :post, only: [:index, :create, :destroy]
+  before_action :post, only: [:create, :destroy]
 
   def index
 
@@ -8,7 +8,7 @@ class LikesController < ApplicationController
   
   def create
     post.like!(current_user)
-    redirect_to post_path(post)
+    redirect_to post_path(post) 
   end
 
   def destroy

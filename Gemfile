@@ -47,6 +47,7 @@ gem "pg_search", "~> 2.3"
 # searchkick, elasticsearch, faker
 gem 'searchkick'
 gem 'elasticsearch', '~>7.17'
+gem 'faker'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

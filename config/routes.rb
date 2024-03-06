@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       delete 'unfollow'
     end
   end
-  resources :posts 
+  resources :posts do
+    resources :comments, only: [:create]
+  end
   root 'posts#index'
 
   

@@ -15,5 +15,6 @@ module Likeable
       def like(current_user)
         likes.find_by(user: current_user)
       end
+      
     end
   end

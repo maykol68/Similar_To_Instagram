@@ -41,6 +41,9 @@ gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Postgresql fulltextsearch
+gem "pg_search", "~> 2.3"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -86,3 +89,5 @@ gem "tailwindcss-rails", "~> 2.3"
 
 # Use for pagination and others things
 gem "pagy", "~> 7.0"
+
+

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+  include PgSearch::Model
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # Include default devise modules. Others available are:
@@ -6,6 +8,10 @@ class User < ApplicationRecord
   devise :omniauthable, :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable, omniauth_providers: [:google_oauth2]
 
+    pg_search_scope :search_full_text, against: {
+      username: 'A'
+      name: 'B' 
+    }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

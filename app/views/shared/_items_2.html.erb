@@ -1,6 +1,10 @@
 <div class="w-full flex-col">
    <div class="flex justify-center text-center items-center text-white base rounded-lg border-e-white shadow-md shadow-blue-500/50 cursor-pointer  ">
     <% if current_user %>
+    <% form_with url: , method: :get do |form| %>
+        <%= form.text_field :query_text, placeholder: t('.query_text'), 
+            onChange: 'this.form.requestSubmit()', value: params[:query_text]%>
+    <% end %>
             <%= link_to  likes_path do %>
                 <span>
                     <i class="fa-regular fa-star"></i>

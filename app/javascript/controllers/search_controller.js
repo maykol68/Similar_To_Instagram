@@ -5,11 +5,11 @@ export default class extends Controller {
   static targets = ["input", "suggestions"];
   connect() {
     console.log("Connected?");
-    document.addEventListener("click", (event => {
+    document.addEventListener("click", (event) => {
       if (!this.element.contains(event.target)) {
-
+        this.hideSuggestions();
       }
-    }))
+    });
   }
 
   suggestions() {

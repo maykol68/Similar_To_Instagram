@@ -13,6 +13,10 @@ class SearchController < ApplicationController
         end
     end
 
+    def suggestions
+        @result = search_for_users
+    end
+
     private
 
     def search_for_users

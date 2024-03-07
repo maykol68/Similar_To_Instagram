@@ -15,6 +15,14 @@ class SearchController < ApplicationController
 
     def suggestions
         @result = search_for_users
+
+        respond_to do  |format| 
+            format.turbo_stream do
+                render turbo_stream:
+                    turbo_stream.update('suggestions',
+                                        partial: 'search/suggestions',
+                                        locals: { users: @results})
+            end
     end
 
     private

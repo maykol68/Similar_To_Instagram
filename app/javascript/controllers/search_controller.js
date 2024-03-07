@@ -3,7 +3,14 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="search"
 export default class extends Controller {
   static targets = ["input", "suggestions"];
-  connect() {}
+  connect() {
+    console.log("Connected?");
+    document.addEventListener("click", (event => {
+      if (!this.element.contains(event.target)) {
+
+      }
+    }))
+  }
 
   suggestions() {
     const query = this.inputTarget.value;
@@ -37,11 +44,18 @@ export default class extends Controller {
     });
   }
 
+  childClicked(even) {
+    this.childWasClicked = this.element.contains(event.target);
+  }
+
   showSuggestions() {
     this.suggestionsTarget.classList.remove("hidden");
   }
 
   hideSuggestions() {
-    this.suggestionsTarget.classList.add("hidden");
+    if (!this.childWasClicked) {
+      this.suggestionsTarget.classList.add("hidden");
+    }
+    this.childWasClicked = false;
   }
 }

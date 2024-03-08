@@ -18,12 +18,20 @@ class PostsController < ApplicationController
   end
 
   def create
+    ActsAsTenant.with_tenant(current_user) do
     @post = Post.new(post_params)
 
-    if @post.save
-      redirect_to @post, notice: t('.created')
-    else
-      render :new, status: :unprocessable_entity
+      if @post.save
+
+        hashtags = params[:post][:hashtags].split(",").map(&:strip)
+        hashtags.each do |tag_name|
+          hashtag = Hashtag.find_or_create_by(name: tag_name)
+          @post.hashtags << hashtag
+        end
+        redirect_to @post, notice: t('.created')
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -50,5 +58,9 @@ class PostsController < ApplicationController
 
   def post_params_index
     params.permit(:page, :likes, :user_id)
+  end
+
+  def post_params
+      params.require(:post).permit(:title, :description, :photo, hashtag_ids: [])
   end
 end

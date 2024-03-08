@@ -9,9 +9,8 @@
     
     <% if current_user %>
         <%= render  partial: "search/form", locals: {results: []} %>
-
+    <% end %>
         <%= render 'shared/items_2' %>
-        <% end %>
         <%= render 'shared/items'%>
     
  </aside >

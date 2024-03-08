@@ -1,7 +1,9 @@
-<% if @post.like(current_user) %>
-    <%= button_to "❤", like_path(post_id: @post.id), method: :delete, data: {turbo_method: :delete}, class:"text-white"%>
-    <p class="text-white"><%= @post.likes.count%> Les gusta</p>
-<% else %>
-    <%= button_to "♡", likes_path(post_id: @post.id), data: {turbo_method: :post} , class:"text-white"%>
-    <p class="text-white"><%= @post.likes.count%></p>
+<%  unless action_name == "index" || "users/show" %>
+    <% if @post.like(current_user) %>
+        <%= button_to "❤", like_path(post_id: @post.id), method: :delete, data: {turbo_method: :delete}, class:"text-white"%>
+        <p class="text-white"><%= @post.likes.count%> Les gusta</p>
+    <% else %>
+        <%= button_to "♡", likes_path(post_id: @post.id), data: {turbo_method: :post} , class:"text-white"%>
+        <p class="text-white"><%= @post.likes.count%></p>
+    <% end %>
 <% end %>

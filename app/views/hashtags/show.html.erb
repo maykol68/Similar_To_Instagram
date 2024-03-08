@@ -1,0 +1,15 @@
+<% @posts.each do |post| %>
+  <div>
+    <div class="flex justify-center w-full border-2 border-slate-500 rounded-lg">
+        <%= link_to post do %>
+          <%= image_tag post.photo, width: 700 if post.photo.attached?  %>
+        <% end %>
+      </div>
+    <p class="my-5 font-serif text-white">
+        <%= post.title %>
+      </p>
+      <p class="my-5 font-serif text-white" >
+        <%= post.description %>
+      </p>
+  </div>
+<% end %>

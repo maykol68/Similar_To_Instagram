@@ -21,7 +21,7 @@
     <% end %>
   </div>
   <% unless action_name == "index" %>
-    <%= render "likes" %>
+    <%= render "posts/likes" %>
     <div class="flex justify-start text-white">
       <i class="fa-regular fa-comment "></i>
       <%= post.comments.count %>
@@ -32,6 +32,11 @@
   </p>
   <p class="my-5 font-serif text-white" >
     <%= post.description %>
+  </p>
+  <p>
+    <% post.hashtags.each do |hashtag| %>
+      <%= link_to "#{hashtag.name}", hashtag_path(hashtag), class:"text-white" %>
+    <% end %>
   </p>
   <% unless action_name == "index" %>
     <h2>Comentarios</h2>

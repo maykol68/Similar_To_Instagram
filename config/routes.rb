@@ -10,19 +10,21 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:index, :create, :destroy], param: :post_id
+  resources :hashtags, only: [:show]
   resources :users, only: :show, path: '/users', param: :username do
     member do
-      post 'follow'
-      delete 'unfollow'
+      post 'follow', to: 'users#follow'
+      delete 'unfollow', to: 'users#unfollow'
     end
   end
+
   resources :posts do
     resources :comments, only: [:create]
   end
   root 'posts#index'
   post 'search', to: 'search#search', as: 'search'
-
   post 'search/suggestions', to: 'search#suggestions', as: 'search_suggestions'
+  
 
   
 end

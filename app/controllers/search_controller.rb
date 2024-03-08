@@ -31,7 +31,7 @@ class SearchController < ApplicationController
         if params[:query].blank?
             User.all
        else
-            User.search(params[:query], Fields: %[uusername name], operator: "or", match: :text_middle)
+            User.search(params[:query], Fields: %[username name], operator: "or", match: :text_middle)
        end
 end
     end

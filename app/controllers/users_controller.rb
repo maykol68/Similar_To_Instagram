@@ -12,6 +12,11 @@ class UsersController < ApplicationController
     def show
         @user = User.find(username: params[:username])
         @users = User.all_except(current_user)
+
+        @room = Room.new
+        @rooms = Room.public_rooms
+
+
         @pagy, @posts = pagy_countless(FindPosts.new.call({user_id: @user.id}).load_async, items: 12)   
     end
 

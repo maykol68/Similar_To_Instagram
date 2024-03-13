@@ -1,4 +1,4 @@
-<%  unless action_name == "index" || "users/show" %>
+<%  unless action_name == "index"%>
     <% if @post.like(current_user) %>
         <%= button_to "❤", like_path(post_id: @post.id), method: :delete, data: {turbo_method: :delete}, class:"text-white"%>
         <p class="text-white"><%= @post.likes.count%> Les gusta</p>

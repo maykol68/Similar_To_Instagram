@@ -1,0 +1,18 @@
+<% unless action_name == "index" %>
+    <h2>Comentarios</h2>
+    <% if @post.comments.any? %>
+      <% @post.comments.each do |comment| %>
+        <div class="comment">
+          <p><strong><%= comment.user.username %>:</strong> <%= comment.content %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No hay comentarios.</p>
+    <% end %>
+  
+    <%= form_with(model: [@post, Comment.new], url: post_comments_path(@post), method: :post) do |form| %>
+      <%= form.text_area :content, placeholder: "Agregar comentario...", class: "w-full" %>
+      <%= form.submit "Publicar Comentario" %>
+    <% end %>
+  <% end %>
+

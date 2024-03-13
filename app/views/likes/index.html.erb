@@ -1,3 +1,21 @@
-<h1><%= t('.Favorites') %></h1>
-
-<%= turbo_frame_tag :posts, src:posts_path(likes: true) %>
+<h1 class="text-white">Mis Favoritos</h1>
+<% if @likes.any? %>
+  <ul>
+    <% @likes.each do |like| %>
+    <div class="flex justify-center w-full border-2 border-slate-500 rounded-lg mt-4">
+        <%= link_to like.post do %>
+          <%= image_tag like.post.photo, width: 700  if like.post.photo.attached?  %>
+        <% end %>
+    </div>
+    <p class="my-5 font-serif text-white">
+        <%= like.post.title %>
+    </p>
+    <p class="my-5 font-serif text-white" >
+        <%= like.post.description %>
+    </p>
+  <hr class="mt-6">
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes favoritos.</p>
+<% end %>

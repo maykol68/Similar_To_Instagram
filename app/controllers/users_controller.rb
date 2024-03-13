@@ -1,8 +1,17 @@
 class UsersController < ApplicationController
     before_action :set_user_follow, only: [:follow, :unfollow]
 
+    def index
+        @users = User.all
+
+        if params[:query_text].present?
+          @users = @users.search_full_text(params[:query_text])
+        end
+    end
+
     def show
-        @user = User.find_by!(username: params[:username])
+        @user = User.find(username: params[:username])
+        @users = User.all_except(current_user)
         @pagy, @posts = pagy_countless(FindPosts.new.call({user_id: @user.id}).load_async, items: 12)   
     end
 

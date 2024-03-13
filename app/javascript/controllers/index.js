@@ -1,16 +1,18 @@
 // Import and register all your controllers from the importmap under controllers/*
 
-import { application } from "controllers/application"
-import Notification from 'stimulus-notification'
+import { application } from "controllers/application";
+import Notification from "stimulus-notification";
 
 // Eager load all controllers defined in the import map under controllers/**/*_controller
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
-eagerLoadControllersFrom("controllers", application)
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading";
+eagerLoadControllersFrom("controllers", application);
 
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-// Stimulus notifications 
-const application = Application.start()
-application.register('notification', Notification)
+// Stimulus notifications
+const application = Application.start();
+application.register("notification", Notification);
+
+// search

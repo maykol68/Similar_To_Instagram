@@ -1,0 +1,11 @@
+<% if @users.any? %>
+  <% @users.each do |user| %>
+    <%= link_to user_path(user.username) do %>
+      <%= image_tag(user.avatar_url ? user.avatar_url : 'notfoundimg.jpg', class: "w-10 h-10 rounded-full mr-4 mt-4") %>
+      <span class="text-white"><%= t('.view_profile', username: user.username) %></span>
+    <% end %>
+    <hr class="mt-6">
+  <% end %>
+<% else %>
+    <p class="text-white"><%= t('.not_found_users') %></p>
+<% end %>

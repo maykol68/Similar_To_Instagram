@@ -1,9 +1,0 @@
-<% if results.any? %>
-    <div class=" w-full overflow-y-auto max-h-60 bg-white rounded-lg shadow-lg">
-        <% results.each do |user| %>
-            <div class="p-2 border-b border-gray-300 hover:bg-gray-100">
-                <%= link_to user.username, user, class: "text-blue-500" %>
-            </div> 
-        <% end %>
-    </div>
-<% end %>

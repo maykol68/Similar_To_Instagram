@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    authorize! @post
+     @post
   end
 
   def create
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    authorize! @post
+     @post
     if @post.update(post_params)
       redirect_to @post, notice: t('.updated')
     else
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    authorize! @post
+     @post
     @post.destroy!
     redirect_to posts_url, notice: t('.destroyed'), status: :see_other
   end
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
   end
 
   def post_params_index
-    params.permit(:page, :likes, :user_id)
+    params.permit(:page, :likes, :user_id, :query_text)
   end
 
   def post_params

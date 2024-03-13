@@ -3,7 +3,7 @@ class LikesController < ApplicationController
   before_action :post, only: [:create, :destroy]
 
   def index
-
+    @likes = current_user.likes.includes(:post)
   end
   
   def create

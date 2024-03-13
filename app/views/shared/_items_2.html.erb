@@ -1,12 +1,30 @@
 <div class="w-full flex-col">
-   <div class="flex justify-center text-center items-center text-white base rounded-lg border-e-white shadow-md shadow-blue-500/50 cursor-pointer  ">
     <% if current_user %>
+    <div>
+        <%= form_with url: users_path, method: :get do |form| %>
+                <%= form.text_field :query_text, 
+                    class:" flex w-full justify-center text-center mt-4 items-center base rounded-lg border-e-white shadow-md shadow-blue-500/50", 
+                    placeholder: t('.query_text'), 
+                    onChange: 'this.form.requestSubmit()', 
+                    value: params[:query_text] %>
+        <% end %>
+    </div>
+   <div class="flex justify-center text-center mt-4 items-center text-white base rounded-lg border-e-white shadow-md shadow-blue-500/50 cursor-pointer  "> 
         <%= link_to  likes_path do %>
             <span>
                 <i class="fa-regular fa-star"></i>
                 <%= t('.favorites')%>
             </span>
         <%end %>
+   </div>
+    
+    <div class="flex justify-center mt-4 text-center items-center text-white text-base rounded-lg border-e-white shadow-md shadow-blue-500/50 cursor-pointer  ">
+        <%= link_to rooms_path do %>
+            <span>
+                <i class="fa-regular fa-message"></i>
+                <%= t('.Chats')%>
+            </span>
+        <% end %>
     </div>
     <div class="flex justify-center mt-4 text-center items-center text-white text-base rounded-lg border-e-white shadow-md shadow-blue-500/50 cursor-pointer  " >
         <%= link_to edit_user_registration_path do%>

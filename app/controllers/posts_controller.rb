@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 
       if @post.save
 
+        NotificationServices.notify_all_users_except(current_user, " ha creado un nuevo post.", @post)
         hashtags = params[:post][:hashtags].split(",").map(&:strip)
         hashtags.each do |tag_name|
           hashtag = Hashtag.find_or_create_by(name: tag_name)
@@ -63,4 +64,5 @@ class PostsController < ApplicationController
   def post_params
       params.require(:post).permit(:title, :description, :photo, hashtag_ids: [])
   end
+
 end

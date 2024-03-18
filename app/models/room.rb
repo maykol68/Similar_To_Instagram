@@ -15,6 +15,7 @@ class Room < ApplicationRecord
         users.each do |user|
             Participant.create(user_id: user.id, room_id: single_room.id)
         end
+        single_room
     end
 
 end

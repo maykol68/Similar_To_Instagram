@@ -1,0 +1,8 @@
+<div class="mt-2">
+    <% @users.each do |user| %>
+        <%= link_to user_path(user.username) do%>
+            <%= image_tag user.avatar_url ? user.avatar_url : 'notfoundimg.jpg', class: "w-10 h-10 rounded-full mr-4" %>
+            <%= t('.view_profile', username: user.username) %>
+        <% end %>
+    <% end %>
+</div>

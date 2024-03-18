@@ -1,8 +1,8 @@
-<div class="cont-<%= message.user.id%>">
-    <div class="message-box msg-<%=message.user.id %>"></div>
-        <% unless message.room.is_private %>
-            <h6><%= message.user.username %></h6>
-        <% end %>
-        <%= message.body %>
+<div class="flex <%= message.user.id == current_user.id ? 'justify-end' : 'justify-start'%> px-5 w-full">
+    <div class="<%= message.user.id == current_user.id ? 'bg-sky-500' : 'bg-gray-500'%> mt-4 w-max-[400px] p-2 rounded-xl">
+      <% unless message.room.is_private %>
+        <h6><%= message.user.username %></h6>
+      <% end %>
+      <%= message.body %>
     </div>
-</div>
+  </div>

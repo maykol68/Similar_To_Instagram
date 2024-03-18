@@ -13,33 +13,19 @@
     <%= javascript_importmap_tags %>
 
     <script src="https://kit.fontawesome.com/95d9fd3f91.js" crossorigin="anonymous"></script>
-    <style>
-      <%= ".msg-#{current_user&.id}"%> {
-      background-color: #007bff !important;
-      padding: 10px;
-      }
-      <%= ".cont-#{current_user&.id}" %> {
-      display: flex;
-      justify-content: flex-end
-      }
-
-    </style>
   </head>
 
   <body class="bg-gray-900 ">
-      <%= render 'shared/flash'%>
-      <div class="flex justify-between">
-        <div class="w-full p-4 border-r border-blue-800 lg:w-2/12	 max-h-full h-screen fixed shadow shadow-indigo-500/50">
-          <%= render 'shared/sidebar'%>
-        </div>
-        <div class="w-full p-4  lg:w-1/2 overflow-y-auto ml-80">
-          <%= yield %>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
-        </div>
-        <div class="w-full text-white lg:w-1/4">
-         <h1>Sugerencias</h1>
-         <%= render 'shared/suggestions' %>
-        </div>
-      </div >
+    <%= render 'shared/flash'%>
+   
+
+    <main class=" flex ">
+      <div class=" w-[280px] p-4 border-r border-blue-600 max-h-full h-screen fixed shadow shadow-indigo-500/50 ">
+        <%= render 'shared/sidebar'%>
+      </div>
+       <%= yield %>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>   
   </body>
 </html>

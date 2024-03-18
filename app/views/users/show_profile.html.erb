@@ -1,0 +1,56 @@
+<div class="pl-72">
+<div class="text-white "> 
+    <div class=" justify-between">
+        <%= image_tag(@user.avatar_url ? @user.avatar_url : 'notfoundimg.jpg', class: "w-24 h-24 rounded-full mr-4 mt-4") %>
+        <h1> <%= @user.username %></h1>
+      <% if @user != current_user %>
+        <% unless current_user.followed_users.include?(@user) %>
+          <%= link_to "Seguir", follow_user_path(@user), method: :post %>
+        <% else %>
+          <%= link_to "Dejar de seguir", unfollow_user_path(@user), method: :delete %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="flex justify-between followers mt-2 mb-3">
+      <div class="flex justify-start">
+        <h2>Publicaciones: </h2>
+          <p><%= @user.posts.count %></p>
+        </div>
+      <div class="flex justify-start">
+        <h2>Seguidores:</h2>
+        <%= @user.followers.count %>
+        <% @user.followers.each do |follower| %>
+          <p><%= link_to follower.username, user_path(follower) %></p>
+        <% end %>
+      </div>
+      <div class="flex justify-end">
+        <h2>Siguiendo:</h2>
+        <%= @user.followed_users.count %>
+        <% @user.followed_users.each do |followed| %>
+          <p><%= link_to followed.username, user_path(followed) %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr class="mt-6">
+  <ul>
+    <% @user.posts.each do |post| %>
+      <li>
+        <div class="flex justify-center w-full border-2 border-slate-500 rounded-lg mt-2">
+          <%= link_to post do %>
+            <% if post.photo.attached? %>
+              <%= image_tag post.photo, width: 700 %>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="my-5 font-serif text-white">
+          <%= post.title %>
+        </p>
+        <p class="my-5 font-serif text-white" >
+          <%= post.description %>
+        </p>
+        <hr class="mt-6">
+      </li>
+    <% end %>
+  </ul>
+</div>

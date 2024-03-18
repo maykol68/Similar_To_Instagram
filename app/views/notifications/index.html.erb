@@ -1,0 +1,20 @@
+<div class="w-full pl-72 text-white">
+    <h1 class="text-center text-2xl">Notificaciones</h1>
+    <hr class="mt-6">
+    <% if @notifications.any? %>
+        <% @notifications.each do |notification| %>
+            <div class="text-center mt-4">
+                <%= notification.sender.username %> <%= notification.message %>
+                <small><%= notification.created_at.strftime("%d/%m/%Y %H:%M") %></small>
+                <% if notification.post.present? %>
+                    <a class="underline-offset-2"><%= link_to "Ver post", post_path(notification.post)%></a>
+                <% end %>
+
+                       
+            </div>
+            <hr class="mt-6">
+        <% end %>
+    <% else %>
+        <p class="text-center">No tienes notificaciones.</p>
+    <% end %>
+</div>

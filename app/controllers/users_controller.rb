@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
     before_action :set_user_follow, only: [:follow, :unfollow]
+    before_action :authenticate_user!
 
     def index
-        @users = User.all
 
         if params[:query_text].present?
-          @users = @users.search_full_text(params[:query_text])
+          @users = User.where("username Like ?", "%"+params[:query_text]+"%" )
+        else 
+          @users = User.all
         end
     end
 
     def show
-        @user = User.find(username: params[:username])
+        @user = User.find_by!(username: params[:username])
         @users = User.all_except(current_user)
+        
 
         @room = Room.new
         @rooms = Room.public_rooms
@@ -21,8 +24,11 @@ class UsersController < ApplicationController
         @message = Message.new
         @messages = @single_room.messages.order(created_at: :asc)
         render 'rooms/index'
+    end
 
-        @pagy, @posts = pagy_countless(FindPosts.new.call({user_id: @user.id}).load_async, items: 12)   
+    def show_profile
+      @user = User.find_by(username: params[:username])
+      @pagy, @posts = pagy_countless(FindPosts.new.call({user_id: @user.id}).load_async, items: 12)   
     end
 
     def follow

@@ -1,4 +1,8 @@
 <%= form_with(model: @room, remote: true, class:'d-flex') do |f| %>
-    <%= f.text_field :name, class:'form-control', autocomplete: 'off' %>
-    <%= f.submit data: {disable_with: false} %>
+    <div class="flex w-full justify-center items-center pr-4">
+        <%= f.text_field :name, 
+                        class:'flex w-full justify-center text-center text-black items-center base rounded-lg border-e-white shadow-md shadow-blue-500/50',
+                        placeholder: "Crear Nuevo grupo",
+                        autocomplete: 'off' %>
+    </div>
 <% end %>

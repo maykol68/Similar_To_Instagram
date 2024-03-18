@@ -1,18 +1,21 @@
 <% unless action_name == "index" %>
-    <h2>Comentarios</h2>
+    <h2 class="text-gray-400">Comentarios</h2>
     <% if @post.comments.any? %>
       <% @post.comments.each do |comment| %>
-        <div class="comment">
-          <p><strong><%= comment.user.username %>:</strong> <%= comment.content %></p>
+        <div class="comment ">
+          <p><strong class="text-teal-200	"><%= comment.user.username %>: </strong><a class="text-gray-300"><%= comment.content %></a></p>
         </div>
       <% end %>
     <% else %>
       <p>No hay comentarios.</p>
     <% end %>
-  
+  <div class="text-white">
     <%= form_with(model: [@post, Comment.new], url: post_comments_path(@post), method: :post) do |form| %>
-      <%= form.text_area :content, placeholder: "Agregar comentario...", class: "w-full" %>
-      <%= form.submit "Publicar Comentario" %>
+      <%= form.text_field :content,
+                          class:'flex w-full justify-center text-center text-black items-center base rounded-lg border-e-white shadow-md shadow-blue-500/50 mt-2',
+                          placeholder: "Añade un comentario...",
+                          autocomplete: 'off'   %>
     <% end %>
-  <% end %>
+  </div>
+<% end %>
 

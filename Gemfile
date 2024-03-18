@@ -94,3 +94,5 @@ gem "tailwindcss-rails", "~> 2.3"
 gem "pagy", "~> 7.0"
 
 
+
+gem "noticed", "~> 2.1"

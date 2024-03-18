@@ -1,6 +1,10 @@
-<div>
-    <%= form_with(model: [@single_room, @message], remote: true) do |f| %>
-        <%= f.text_field :body, id: 'chat-text', class:'form-control msg-content', autocomplete: 'off' %>
-        <%= f.submit data: {disable_with: false} %> 
-    <% end %>
-</div>
+<%= form_with(model: [@single_room, @message], remote: true) do |f| %>
+    <div class="flex w-full justify-center items-center pr-2">
+        <%= f.text_field :body, 
+                    class: 'text-black flex w-full justify-center text-center items-center base rounded-lg border-e-white shadow-md shadow-blue-500/50', 
+                    placeholder: "Enviar mensaje", 
+                    autocomplete: 'off' %>
+    </div>
+<% end %>
+
+

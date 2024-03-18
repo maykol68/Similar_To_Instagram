@@ -1,0 +1,20 @@
+<div class=" w-full">
+    <% @users = User.all %>
+    <div class="mb-4 mt-4">
+        <% unless @users == nil %>
+            <% @users.each do |user| %>
+                <% unless user == current_user %>
+                    <%= link_to user_profile_path(user.username) do%>
+                        <div class="flex justify-center mt-4 border border-gray rounded-lg ">
+                            <%= image_tag user.avatar_url ? user.avatar_url : 'notfoundimg.jpg', class: "w-10 h-10 rounded-full mr-4" %>
+                            <%= t('.view_profile', username: user.username) %>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% end %>  
+        <% else %>
+            <h1>No hay Sugerencias</h1>
+        <%end %>
+    </div>
+    <small>© Michael Moreno</small>
+</div>

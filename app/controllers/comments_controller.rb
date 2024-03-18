@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
+    before_action :authenticate_user!
     def create
-        @comment = @post.comments.build(comment_params)
+        @comment = post.comments.build(comment_params)
         @comment.user = current_user
     
         if @comment.save
-          redirect_to @post, notice: ('.created')
+          NotificationServices.notify(post.user, current_user, "Ha comentado en tu post.")
+          redirect_to post, notice: t('.created')
         else
-          redirect_to @post, status: :unprocessable_entity
+          redirect_to post, status: :unprocessable_entity
         end
     end
 

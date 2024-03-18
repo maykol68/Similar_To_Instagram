@@ -1,69 +1,71 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="pl-72">
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="my-5">
-    <%= f.label :avatar_url %>
-    <%= f.file_field :avatar_url, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
-  </div>
+    <div class="my-5">
+      <%= f.label :avatar_url %>
+      <%= f.file_field :avatar_url, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="my-5">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
+    <div class="my-5">
+      <%= f.label :username %><br />
+      <%= f.text_field :username %>
+    </div>
 
-  <div class="my-5">
-    <%= f.label :second_name %><br />
-    <%= f.text_field :secondname %>
-  </div>
+    <div class="my-5">
+      <%= f.label :second_name %><br />
+      <%= f.text_field :secondname %>
+    </div>
 
-  <div class="field">
-    <%= f.label :birth_date %><br />
-    <%= f.datetime_field :birth_date %>
-  </div>
+    <div class="field">
+      <%= f.label :birth_date %><br />
+      <%= f.datetime_field :birth_date %>
+    </div>
 
-  <div class="my-5">
-    <%= f.label :biography %><br />
-    <%= f.text_area :biography %>
-  </div>
+    <div class="my-5">
+      <%= f.label :biography %><br />
+      <%= f.text_area :biography %>
+    </div>
 
-  
+    
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div><br />
+
+    <div class="actions rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer">
+      <%= f.submit "Update" %>
+    </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-
+  <div class=" mt-6">
+    <%= button_to "Cancel my account", 
+        registration_path(resource_name),
+        data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
+        method: :delete,
+        class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to t('Back'), :back, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div><br />
-
-  <div class="actions rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-<div class=" mt-6">
-  <%= button_to "Cancel my account", 
-      registration_path(resource_name),
-      data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
-      method: :delete,
-      class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to t('Back'), :back, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

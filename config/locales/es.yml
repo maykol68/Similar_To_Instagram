@@ -6,14 +6,26 @@ es:
       view_profile: "%{username}"
       not_found_users: "No se encontraron usuarios usuarios con este apodo.."
   posts:
+    create:
+      created: "Creado correctamente"
+    destroy:
+      destroyed: "Eliminado correctamente"
     index:
       query_text: "Buscar posts"
     confirm_delete: "¿Estás seguro de que deseas eliminar este post?"
     post:
       view_profile: "%{username}"
+  comments:
+    create:
+      created: "Comentario creado correctamente"
+  rooms:
+    users:
+      view_profile: "%{username}"
   shared:
     items_2:
       query_text: "Buscar username"
+    suggestions:
+      view_profile: "%{username}"
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

@@ -1,15 +1,25 @@
- <%= turbo_frame_tag 'home' do%>
-        <%= form_with url: posts_path, method: :get do |form| %>
-            <%= form.text_field :query_text, 
-                                class:" flex w-full justify-center text-center mt-4 items-center text-white base rounded-lg border-e-white shadow-md shadow-blue-500/50", 
-                                placeholder: t('.query_text'), 
-                                onChange: 'this.form.requestSubmit()', 
-                                value: params[:query_text] %>
-        <% end %>
-        <%= turbo_frame_tag :posts do %>
-                <%= turbo_frame_tag "posts-#{@pagy.page}", class: 'posts' do %>
-                        <%= render @posts %>
-                <%= turbo_frame_tag "posts-#{@pagy.next}", class:'posts', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
-                <% end %>
-        <% end %>
-<% end %>
+<div class="pl-72">
+        <div class="flex justify-between">
+                <div class="w-full p-4 lg:w-full overflow-y-auto ">
+                        <%= turbo_frame_tag 'home' do%>
+                                <%= form_with url: posts_path, method: :get do |form| %>
+                                        <%= form.text_field :query_text, 
+                                                        class:" flex w-full justify-center text-center mt-4 items-center text-white base rounded-lg border-e-white shadow-md shadow-blue-500/50", 
+                                                        placeholder: t('.query_text'), 
+                                                        onChange: 'this.form.requestSubmit()', 
+                                                        value: params[:query_text] %>
+                                        <% end %>
+                                <%= turbo_frame_tag :posts do %>
+                                        <%= turbo_frame_tag "posts-#{@pagy.page}", class: 'posts' do %>
+                                                <%= render @posts %>
+                                        <%= turbo_frame_tag "posts-#{@pagy.next}", class:'posts', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
+                                        <% end %>
+                                <% end %>
+                        <% end %>
+                </div>
+                <div class="w-full text-white lg:w-[400px]">
+                        <h1>Sugerencias</h1>
+                        <%= render 'shared/suggestions' %>
+                </div>
+        </div >
+        

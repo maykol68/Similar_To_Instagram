@@ -7,9 +7,8 @@ class LikesController < ApplicationController
   end
   
   def create
-
     post.like!(current_user)
-    NotificationServices.notify(post.user, current_user, "Le ha gustado tu post.")
+    NotificationServices.notify_likes(post.user, current_user, "Le ha gustado tu post.", post) if post.user != current_user
     redirect_to post_path(post)
   end
 

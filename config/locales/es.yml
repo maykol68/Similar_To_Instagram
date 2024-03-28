@@ -10,6 +10,8 @@ es:
       created: "Creado correctamente"
     destroy:
       destroyed: "Eliminado correctamente"
+    update:
+      updated: "Actualizado correctamente"
     index:
       query_text: "Buscar posts"
     confirm_delete: "¿Estás seguro de que deseas eliminar este post?"
@@ -18,6 +20,9 @@ es:
   comments:
     create:
       created: "Comentario creado correctamente"
+  follows:
+    unfollowed: "Has dejado de seguir a %{username}"
+    followed: "Estas siguiendo a %{username}"
   rooms:
     users:
       view_profile: "%{username}"

@@ -29,7 +29,7 @@
                 <h1 class="uppercase fond-bold font-mono"><%=current_user.username%> </h1>
               </div>
               <div class="border-t py-4">
-                <h4 class="text-center items-center text-white base rounded-lg border-e-white shadow-md shadow-gray-500/50">Users</h4>
+                <h4 class="text-center items-center text-white base rounded-lg border-e-white shadow-md shadow-gray-500/50"><i class="fa-regular fa-user"></i><%= t('.users') %></h4>
                 <div class="mt-6">
                   <%= turbo_stream_from "users" %>
                 </div>
@@ -39,12 +39,12 @@
               </div>
         </div>
         <div class="border-t py-4 border-white mt-4">
-            <h4 class="text-center items-center text-white base rounded-lg border-e-white shadow-md shadow-gray-500/50"><%= t('.Groups') %></h4>
+            <h4 class="text-center items-center text-white base rounded-lg border-e-white shadow-md shadow-gray-500/50"><i class="fa-solid fa-users"></i><%= t('.Groups') %></h4>
               <%= turbo_stream_from "rooms" %>
             <div class="mt-6">
               <%= render @rooms %>
               <div class="mt-10">
-                <%= render 'layouts/new_room_form' %>
+                <%= render partial:'layouts/new_room_form' %>
               </div>
             </div>
           </div>

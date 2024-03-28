@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_044000) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_28_083408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,11 +52,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_044000) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "followers", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+  create_table "follows", force: :cascade do |t|
+    t.bigint "follower_id", null: false
+    t.bigint "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
   create_table "hashtags", force: :cascade do |t|
@@ -138,7 +141,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_044000) do
     t.string "name"
     t.string "uid"
     t.string "secondname"
-    t.datetime "birth_date"
+    t.date "birth_date"
     t.string "biography"
     t.string "avatar_url"
     t.string "provider"
@@ -156,11 +159,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_044000) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "follows", "users", column: "followed_id"
+  add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "notifications", "posts"
   add_foreign_key "notifications", "users", column: "sender_id"
   add_foreign_key "participants", "rooms"
   add_foreign_key "participants", "users"

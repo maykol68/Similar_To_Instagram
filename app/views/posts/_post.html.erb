@@ -1,7 +1,7 @@
 <div id="<%= dom_id post %>" class="post p-4">
   <div class="flex items-center text-white ">
     <%= link_to user_profile_path(post.user.username) do%>
-      <%= image_tag post.user.avatar_url ? post.user.avatar_url : 'notfoundimg.jpg', class: "w-10 h-10 rounded-full mr-4" %>
+      <%= image_tag post.user.avatar_url.presence || "notfoundimg.jpg",  class: "w-10 h-10 rounded-full mr-4" %>
       <%= t('.view_profile', username: post.user.username) %>
     <% end %>
   </div>
@@ -17,15 +17,12 @@
   </div>
   <div class="flex justify-center w-full border-2 border-slate-500 rounded-lg mt-2">
     <%= link_to post do %>
-      <%= image_tag post.photo, width: 700 if post.photo.attached?  %>
+      <%= image_tag post.photo, width: 700  if post.photo.attached?  %>
     <% end %>
   </div>
   <% unless action_name == "index" %>
     <%= render "posts/likes" %>
-    <div class="flex justify-start text-white">
-      <i class="fa-regular fa-comment "></i>
-      <%= post.comments.count %>
-    </div>
+    
   <% end %>
   <p class="my-5 font-serif text-white">
     <%= post.title %>

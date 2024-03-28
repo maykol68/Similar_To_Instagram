@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
         @comment.user = current_user
     
         if @comment.save
-          NotificationServices.notify(post.user, current_user, "Ha comentado en tu post.")
+          NotificationServices.notify_comments(post.user, current_user, "Ha comentado en tu post.", post) if post.user != current_user
           redirect_to post, notice: t('.created')
         else
           redirect_to post, status: :unprocessable_entity

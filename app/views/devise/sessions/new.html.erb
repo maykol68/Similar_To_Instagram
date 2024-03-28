@@ -2,13 +2,13 @@
 <h1 class="text-blue-700 text-4xl">Log in</h1>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field text-white">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="field">
+      <%= f.label :login, "Correo electrónico o Nombre de usuario", class:"text-white" %><br />
+      <%= f.text_field :login, autofocus: true, autocomplete: "username email" %>
     </div>
 
     <div class="field ">
-      <%= f.label :password %><br />
+      <%= f.label :password, class:"text-white" %><br />
       <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 

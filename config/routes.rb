@@ -16,12 +16,11 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:index, :create, :destroy], param: :post_id
   resources :hashtags, only: [:show]
-  resources :users, only: [:index, :show], param: :username do
-    member do
-      post 'follow', to: 'users#follow'
-      delete 'unfollow', to: 'users#unfollow'
-    end
-  end
+  resources :users, only: [:index, :show], param: :username 
+   
+  post 'users/follow/:username', to: 'follows#follow', as: 'follow'
+  delete 'users/unfollow/:username', to: 'follows#unfollow', as: 'unfollow'
+  
   get 'users/profile/:username', to: 'users#show_profile', as: 'user_profile'
 
   resources :messages, only: [:index, :new, :create]

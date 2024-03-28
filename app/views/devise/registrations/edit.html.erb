@@ -20,13 +20,22 @@
     </div>
 
     <div class="my-5">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="my-5">
       <%= f.label :second_name %><br />
       <%= f.text_field :secondname %>
     </div>
 
     <div class="field">
-      <%= f.label :birth_date %><br />
-      <%= f.datetime_field :birth_date %>
+      <%= f.label :birth_date, "Fecha de Nacimiento" %><br />
+      <% if current_user.birth_date.present? %>
+        <%= f.date_field :birth_date, value: current_user.birth_date.strftime('%Y-%m-%d') %>
+      <% else %>
+        <%= f.date_field :birth_date %>
+      <% end %>
     </div>
 
     <div class="my-5">
